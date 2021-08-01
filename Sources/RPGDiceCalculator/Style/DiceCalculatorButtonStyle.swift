@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(macOS 10.15, *)
 struct DiceCalculatorButtonStyle: ButtonStyle {
     
     let buttonConfiguration: ButtonConfiguration<Color>
@@ -39,6 +40,7 @@ struct DiceCalculatorButtonStyle: ButtonStyle {
     
 }
 
+@available(macOS 11.0, *)
 struct DiceCalculatorButtonStyle_Previews: PreviewProvider {
     
     static var previews: some View {

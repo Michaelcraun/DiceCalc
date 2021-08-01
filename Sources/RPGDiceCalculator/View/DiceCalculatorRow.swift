@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(macOS 11.0, *)
 struct DiceCalculatorRow: View {
     
     @ObservedObject var viewModel: DiceCalculatorViewModel
@@ -46,6 +47,7 @@ struct DiceCalculatorRow: View {
     
 }
 
+@available(macOS 11.0, *)
 struct DiceCalculatorRow_Previews: PreviewProvider {
     static var previews: some View {
         DiceCalculatorRow(viewModel: DiceCalculatorViewModel(), actions: [.d4, .d6, .d8, .delete])

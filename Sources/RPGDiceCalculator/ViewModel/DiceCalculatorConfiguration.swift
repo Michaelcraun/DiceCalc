@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+@available(macOS 11.0, *)
 struct DiceCalculatorConfiguration {
     
     var buttonConfiguration = ButtonConfiguration(background: Color.gray)
@@ -18,6 +20,7 @@ struct DiceCalculatorConfiguration {
     
 }
 
+@available(macOS 10.15, *)
 struct ButtonConfiguration<Background:View> {
     
     var background: Background
@@ -28,6 +31,7 @@ struct ButtonConfiguration<Background:View> {
     
 }
 
+@available(macOS 10.15, *)
 struct TextConfiguration<Background:View> {
     
     var background: Background
