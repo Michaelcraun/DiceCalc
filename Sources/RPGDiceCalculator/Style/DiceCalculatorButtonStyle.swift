@@ -11,9 +11,9 @@ import SwiftUI
 @available(iOS 14.0, *)
 struct DiceCalculatorButtonStyle: ButtonStyle {
     
-    let buttonConfiguration: ButtonConfiguration<Color>
+    let buttonConfiguration: ButtonConfiguration
     
-    init(configuration: ButtonConfiguration<Color>) {
+    init(configuration: ButtonConfiguration) {
         self.buttonConfiguration = configuration
     }
     
@@ -24,7 +24,6 @@ struct DiceCalculatorButtonStyle: ButtonStyle {
                 configuration.isPressed ?
                     buttonConfiguration.backgroundColor.pressed :
                     buttonConfiguration.backgroundColor.normal)
-            .background(buttonConfiguration.background)
             .cornerRadius(buttonConfiguration.cornerRadius)
             .foregroundColor(
                 configuration.isPressed ?
@@ -49,7 +48,7 @@ struct DiceCalculatorButtonStyle_Previews: PreviewProvider {
         Button(action: {  }, label: {
             Text("Test")
         })
-        .buttonStyle(DiceCalculatorButtonStyle(configuration: ButtonConfiguration(background: Color.gray)))
+        .buttonStyle(DiceCalculatorButtonStyle(configuration: ButtonConfiguration()))
         
     }
     

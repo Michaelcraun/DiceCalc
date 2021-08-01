@@ -58,6 +58,8 @@ make install
 
 ## Release History
 
+* 0.0.6
+    * Fixed some logic issues caused by previous update
 * 0.0.5
     * Fixed some layout issues
 * 0.0.4
