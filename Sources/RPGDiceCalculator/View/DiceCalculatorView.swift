@@ -8,6 +8,7 @@
 import SwiftUI
 
 @available(macOS 11.0, *)
+@available(iOS 14.0, *)
 public struct DiceCalculatorView: View {
     
     @StateObject var viewModel = DiceCalculatorViewModel()

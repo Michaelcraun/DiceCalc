@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(macOS 11.0, *)
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 struct DiceCalculatorRow: View {
     
     @ObservedObject var viewModel: DiceCalculatorViewModel

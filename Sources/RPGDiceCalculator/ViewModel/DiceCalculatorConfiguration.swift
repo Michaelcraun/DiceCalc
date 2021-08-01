@@ -9,7 +9,7 @@ import SwiftUI
 
 
 @available(macOS 11.0, *)
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 public struct DiceCalculatorConfiguration {
     
     var buttonConfiguration = ButtonConfiguration(background: Color.gray)

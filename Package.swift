@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "RPGDiceCalculator",
     platforms: [
-        .iOS("13.0"),
+        .iOS("14.0"),
         .macOS("11.0")
     ],
     products: [

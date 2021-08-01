@@ -8,7 +8,7 @@
 import Foundation
 
 @available(macOS 10.15, *)
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 class DiceCalculatorViewModel: ObservableObject {
     
     @Published var formula: String = "0"
