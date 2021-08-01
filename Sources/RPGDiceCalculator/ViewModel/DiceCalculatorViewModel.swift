@@ -9,7 +9,7 @@ import Foundation
 
 @available(macOS 10.15, *)
 @available(iOS 14.0, *)
-class DiceCalculatorViewModel: ObservableObject {
+public class DiceCalculatorViewModel: ObservableObject {
     
     @Published var formula: String = "0"
     @Published var output: String = "0"

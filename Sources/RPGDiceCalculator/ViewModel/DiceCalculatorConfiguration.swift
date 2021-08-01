@@ -19,6 +19,21 @@ public struct DiceCalculatorConfiguration {
     var rollButtonSymbol: String?
     var rollButtonTitle: String = "Roll"
     
+    public init(
+        buttonConfiguration: ButtonConfiguration<Color> = ButtonConfiguration(background: Color.gray),
+        formulaFont: Font = .title2,
+        outputFont: Font = .title,
+        textConfiguration: TextConfiguration<Color> = TextConfiguration(background: Color.gray),
+        rollButtonSymbol: String? = nil,
+        rollButtonTitle: String = "Roll") {
+        self.buttonConfiguration = buttonConfiguration
+        self.formulaFont = formulaFont
+        self.outputFont = outputFont
+        self.textConfiguration = textConfiguration
+        self.rollButtonSymbol = rollButtonSymbol
+        self.rollButtonTitle = rollButtonTitle
+    }
+    
 }
 
 @available(macOS 10.15, *)
@@ -31,6 +46,19 @@ public struct ButtonConfiguration<Background:View> {
     var cornerRadius: CGFloat = 5
     var shadowRadius: CGFloat = 10
     
+    public init(
+        background: Background,
+        foregroundColor: (normal: Color, pressed: Color) = (.black, .white),
+        backgroundColor: (normal: Color, pressed: Color) = (.gray, .black),
+        cornerRadius: CGFloat = 5.0,
+        shadowRadius: CGFloat = 10.0) {
+        self.background = background
+        self.foregroundColor = foregroundColor
+        self.backgroundColor = backgroundColor
+        self.cornerRadius = cornerRadius
+        self.shadowRadius = shadowRadius
+    }
+    
 }
 
 @available(macOS 10.15, *)
@@ -41,5 +69,16 @@ public struct TextConfiguration<Background:View> {
     var foregroundColor: Color = .black
     var cornerRadius: CGFloat = 5
     var shadowRadius: CGFloat = 10
+    
+    public init(
+        background: Background,
+        foregroundColor: Color = .black,
+        cornerRadius: CGFloat = 5.0,
+        shadowRadius: CGFloat = 10.0) {
+        self.background = background
+        self.foregroundColor = foregroundColor
+        self.cornerRadius = cornerRadius
+        self.shadowRadius = shadowRadius
+    }
     
 }

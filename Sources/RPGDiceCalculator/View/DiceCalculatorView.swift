@@ -55,11 +55,15 @@ public struct DiceCalculatorView: View {
     
     }
     
+    public init(configuration: DiceCalculatorConfiguration = DiceCalculatorConfiguration()) {
+        self.configuration = configuration
+    }
+    
 }
 
 @available(macOS 11.0, *)
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        DiceCalculatorView(viewModel: DiceCalculatorViewModel(), configuration: DiceCalculatorConfiguration())
+        DiceCalculatorView(configuration: DiceCalculatorConfiguration())
     }
 }
