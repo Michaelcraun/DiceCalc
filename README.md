@@ -29,6 +29,7 @@ let package = Package(
 You can use the default layout simply by using the default initializer like so:
 ```swift
 import RPGDiceCalculator
+import SwiftUI
 
 struct SomeView: View {
     var body: some View {
@@ -37,16 +38,31 @@ struct SomeView: View {
 }
 ```
 
-Or you can customize the view's appearance using an instance of the DiceCalculatorConfiguration, like so:
+![](default_configuration.png)
+
+Or you can customize the calculator's appearance using an instance of the DiceCalculatorConfiguration, like so:
 ```swift
 import RPGDiceCalculator
+import SwiftUI
 
-struct SomeView: View {
+struct DicePickerView: View {
     var configuration: DiceCalculatorConfiguration {
         DiceCalculatorConfiguration(
+            buttonConfiguration: ButtonConfiguration(
+                foregroundColor: (normal: .primary, pressed: Color.secondary),
+                backgroundColor: (normal: .secondary, pressed: .secondary)),
+            formulaFont: .body,
+            outputFont: .largeTitle,
+            rollButtonTitle: "Finished")
+    }
+    
+    var body: some View {
+        DiceCalculatorView(configuration: configuration)
     }
 }
 ```
+
+![](custom_configuration.png)
 
 ## Development setup
 
@@ -58,6 +74,8 @@ make install
 
 ## Release History
 
+* 0.1.0
+    * The first official release
 * 0.0.6
     * Fixed some logic issues caused by previous update
 * 0.0.5
@@ -77,14 +95,14 @@ make install
 
 Michael Craun – [@opkurix](https://twitter.com/opkurix) – michael.craun@gmail.com
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
+Distributed under the GNU GPLv3 license. See ``LICENSE`` for more information.
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+[https://github.com/Michaelcraun/github-link](https://github.com/Michaelcraun/)
 
 [swift-image]:https://img.shields.io/badge/swift-3.0-orange.svg
 [swift-url]: https://swift.org/
 [license-image]: https://img.shields.io/badge/License-MIT-blue.svg
-[license-url]: LICENSE
+[license-url]: https://spdx.org/licenses/GPL-3.0-or-later.html
 [travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
 [codebeat-image]: https://codebeat.co/badges/c19b47ea-2f9d-45df-8458-b2d952fe9dad
