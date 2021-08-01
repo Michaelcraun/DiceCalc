@@ -9,7 +9,8 @@ import SwiftUI
 
 
 @available(macOS 11.0, *)
-struct DiceCalculatorConfiguration {
+@available(iOS 13.0, *)
+public struct DiceCalculatorConfiguration {
     
     var buttonConfiguration = ButtonConfiguration(background: Color.gray)
     var formulaFont: Font = .title2
@@ -21,7 +22,8 @@ struct DiceCalculatorConfiguration {
 }
 
 @available(macOS 10.15, *)
-struct ButtonConfiguration<Background:View> {
+@available(iOS 13.0, *)
+public struct ButtonConfiguration<Background:View> {
     
     var background: Background
     var foregroundColor: (normal: Color, pressed: Color) = (.black, .white)
@@ -32,7 +34,8 @@ struct ButtonConfiguration<Background:View> {
 }
 
 @available(macOS 10.15, *)
-struct TextConfiguration<Background:View> {
+@available(iOS 13.0, *)
+public struct TextConfiguration<Background:View> {
     
     var background: Background
     var foregroundColor: Color = .black

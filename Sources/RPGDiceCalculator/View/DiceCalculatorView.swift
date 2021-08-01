@@ -13,7 +13,7 @@ public struct DiceCalculatorView: View {
     @StateObject var viewModel = DiceCalculatorViewModel()
     let configuration: DiceCalculatorConfiguration
     
-    var body: some View {
+    public var body: some View {
         
         LazyVGrid(columns: [GridItem(.flexible())]) {
             

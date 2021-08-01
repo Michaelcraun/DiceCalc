@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "RPGDiceCalculator",
+    platforms: [
+        .iOS("13.0"),
+        .macOS("11.0")
+    ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -26,3 +30,5 @@ let package = Package(
             dependencies: ["RPGDiceCalculator"]),
     ]
 )
+
+//Package(name: <#T##String#>, defaultLocalization: <#T##LanguageTag?#>, platforms: <#T##[SupportedPlatform]?#>, pkgConfig: <#T##String?#>, providers: <#T##[SystemPackageProvider]?#>, products: <#T##[Product]#>, dependencies: <#T##[Package.Dependency]#>, targets: <#T##[Target]#>, swiftLanguageVersions: <#T##[SwiftVersion]?#>, cLanguageStandard: <#T##CLanguageStandard?#>, cxxLanguageStandard: <#T##CXXLanguageStandard?#>)
