@@ -16,14 +16,23 @@ struct ContentView<TextBackground: View>: View {
         
         LazyVGrid(columns: [GridItem(.flexible())]) {
             
-            Text(viewModel.output)
-                .font(.title)
-                .foregroundColor(.black)
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .background(textBackground)
-                .cornerRadius(5)
-                .shadow(radius: 10)
+            VStack {
+                
+                Text(viewModel.output)
+                    .font(.title)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                
+                Text(viewModel.formula)
+                    .font(.title2)
+                    .multilineTextAlignment(.trailing)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                
+            }
+            .foregroundColor(.black)
+            .padding()
+            .background(textBackground)
+            .cornerRadius(5)
+            .shadow(radius: 10)
             
             DiceCalculatorRow(viewModel: viewModel, actions: [.d4, .d6, .d8, .delete])
             
