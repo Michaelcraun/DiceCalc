@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct ContentView<TextBackground: View>: View {
+struct ContentView: View {
     
     @StateObject var viewModel = DiceCalculatorViewModel()
-    let textBackground: TextBackground
+    let configuration: DiceCalculatorConfiguration
     
     var body: some View {
         
@@ -19,20 +19,20 @@ struct ContentView<TextBackground: View>: View {
             VStack {
                 
                 Text(viewModel.output)
-                    .font(.title)
+                    .font(configuration.outputFont)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 
                 Text(viewModel.formula)
-                    .font(.title2)
+                    .font(configuration.formulaFont)
                     .multilineTextAlignment(.trailing)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 
             }
             .foregroundColor(.black)
             .padding()
-            .background(textBackground)
-            .cornerRadius(5)
-            .shadow(radius: 10)
+            .background(configuration.textConfiguration.background)
+            .cornerRadius(configuration.textConfiguration.cornerRadius)
+            .shadow(radius: configuration.textConfiguration.shadowRadius)
             
             DiceCalculatorRow(viewModel: viewModel, actions: [.d4, .d6, .d8, .delete])
             
@@ -48,7 +48,8 @@ struct ContentView<TextBackground: View>: View {
             
         }
         .padding()
-        .buttonStyle(DiceCalculatorButtonStyle())
+        .frame(idealWidth: 300, maxWidth: 400, idealHeight: 400, maxHeight: 500)
+        .buttonStyle(configuration.buttonConfiguration.style)
     
     }
     
@@ -56,6 +57,6 @@ struct ContentView<TextBackground: View>: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(viewModel: DiceCalculatorViewModel(), textBackground: Color.gray)
+        ContentView(viewModel: DiceCalculatorViewModel(), configuration: DiceCalculatorConfiguration())
     }
 }

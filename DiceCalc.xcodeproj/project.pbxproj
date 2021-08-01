@@ -13,6 +13,8 @@
 		9B280A1A26B6CDA400423C3D /* DiceButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B280A1826B6CDA400423C3D /* DiceButtonAction.swift */; };
 		9B280A1C26B6CDE200423C3D /* Die.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B280A1B26B6CDE200423C3D /* Die.swift */; };
 		9B280A1D26B6CDE200423C3D /* Die.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B280A1B26B6CDE200423C3D /* Die.swift */; };
+		9B280A2326B6EAD700423C3D /* DiceCalculatorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B280A2226B6EAD700423C3D /* DiceCalculatorConfiguration.swift */; };
+		9B280A2426B6EAD700423C3D /* DiceCalculatorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B280A2226B6EAD700423C3D /* DiceCalculatorConfiguration.swift */; };
 		9B9EDAD626B5C068007F0608 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EDAD526B5C068007F0608 /* Tests_iOS.swift */; };
 		9B9EDAE126B5C068007F0608 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EDAE026B5C068007F0608 /* Tests_macOS.swift */; };
 		9B9EDAE326B5C068007F0608 /* DiceCalcApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9EDABA26B5C066007F0608 /* DiceCalcApp.swift */; };
@@ -48,6 +50,7 @@
 		9B280A1526B636C300423C3D /* DiceCalculatorRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceCalculatorRow.swift; sourceTree = "<group>"; };
 		9B280A1826B6CDA400423C3D /* DiceButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceButtonAction.swift; sourceTree = "<group>"; };
 		9B280A1B26B6CDE200423C3D /* Die.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Die.swift; sourceTree = "<group>"; };
+		9B280A2226B6EAD700423C3D /* DiceCalculatorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceCalculatorConfiguration.swift; sourceTree = "<group>"; };
 		9B9EDABA26B5C066007F0608 /* DiceCalcApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceCalcApp.swift; sourceTree = "<group>"; };
 		9B9EDABB26B5C066007F0608 /* DiceCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceCalculator.swift; sourceTree = "<group>"; };
 		9B9EDABC26B5C068007F0608 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,6 +101,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B280A1E26B6E83B00423C3D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9B280A1B26B6CDE200423C3D /* Die.swift */,
+				9B280A1826B6CDA400423C3D /* DiceButtonAction.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9B280A1F26B6E84D00423C3D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B9EDABB26B5C066007F0608 /* DiceCalculator.swift */,
+				9B280A1526B636C300423C3D /* DiceCalculatorRow.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9B280A2026B6E89600423C3D /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				9B9EDAFA26B5C0DE007F0608 /* DiceCalculatorButtonStyle.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		9B280A2126B6E89B00423C3D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9B9EDAF726B5C0A6007F0608 /* DiceCalculatorViewModel.swift */,
+				9B280A2226B6EAD700423C3D /* DiceCalculatorConfiguration.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		9B9EDAB426B5C066007F0608 = {
 			isa = PBXGroup;
 			children = (
@@ -113,14 +151,12 @@
 		9B9EDAB926B5C066007F0608 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				9B9EDABA26B5C066007F0608 /* DiceCalcApp.swift */,
-				9B9EDABB26B5C066007F0608 /* DiceCalculator.swift */,
-				9B9EDAFA26B5C0DE007F0608 /* DiceCalculatorButtonStyle.swift */,
-				9B9EDAF726B5C0A6007F0608 /* DiceCalculatorViewModel.swift */,
-				9B280A1B26B6CDE200423C3D /* Die.swift */,
-				9B280A1826B6CDA400423C3D /* DiceButtonAction.swift */,
-				9B280A1526B636C300423C3D /* DiceCalculatorRow.swift */,
 				9B9EDABC26B5C068007F0608 /* Assets.xcassets */,
+				9B9EDABA26B5C066007F0608 /* DiceCalcApp.swift */,
+				9B280A1E26B6E83B00423C3D /* Model */,
+				9B280A2026B6E89600423C3D /* Style */,
+				9B280A1F26B6E84D00423C3D /* View */,
+				9B280A2126B6E89B00423C3D /* ViewModel */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -329,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B9EDAF826B5C0A6007F0608 /* DiceCalculatorViewModel.swift in Sources */,
+				9B280A2326B6EAD700423C3D /* DiceCalculatorConfiguration.swift in Sources */,
 				9B9EDAE526B5C068007F0608 /* DiceCalculator.swift in Sources */,
 				9B280A1C26B6CDE200423C3D /* Die.swift in Sources */,
 				9B9EDAFB26B5C0DE007F0608 /* DiceCalculatorButtonStyle.swift in Sources */,
@@ -343,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B9EDAF926B5C0A6007F0608 /* DiceCalculatorViewModel.swift in Sources */,
+				9B280A2426B6EAD700423C3D /* DiceCalculatorConfiguration.swift in Sources */,
 				9B9EDAE626B5C068007F0608 /* DiceCalculator.swift in Sources */,
 				9B280A1D26B6CDE200423C3D /* Die.swift in Sources */,
 				9B9EDAFC26B5C0DE007F0608 /* DiceCalculatorButtonStyle.swift in Sources */,

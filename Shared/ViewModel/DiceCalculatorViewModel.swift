@@ -52,16 +52,37 @@ class DiceCalculatorViewModel: ObservableObject {
     
     private func add(number: DieButtonAction) {
         
-        // The last button pressed was a die; should add the add operation before adding the number by default
-        if case .die(_) = actions.last {
-            actions.append(.add)
-            actions.append(number)
+        // This is the first entry and the entry is 0
+        if actions.isEmpty && number.output == "0" {
             return
         }
         
-        // TODO: Add case to limit number of dice that can be rolled to 5 digits long (performance issues)
+        // The last button pressed was a die
+        if case .die(_) = actions.last {
+            // Adding 0 is useless so don't allow the user to do it
+            if number.output == "0" {
+                return
+            }
+            
+            // Append the add operation
+            actions.append(.add)
+        }
         
-        // No more special cases
+        // The last button pressed was a number; should check if the current number is more than 5 digits
+        // and not allow the user to enter that digit if it is
+        if case .number(_) = actions.last {
+            let newNumber = Int("\(formula.split(separator: " ").last!)\(number.output)")!
+            if newNumber > 99999 {
+                return
+            }
+        }
+        
+        // Adding 0 is useless so don't allow the user to do it
+        if case .operation(_) = actions.last, number.output == "0" {
+            return
+        }
+        
+        // Finally add the number to the formula
         actions.append(number)
         
     }
@@ -100,6 +121,12 @@ class DiceCalculatorViewModel: ObservableObject {
     
     private func roll() {
         
+        // If the last button pressed was an operation, it's useless, so remove it
+        if case .operation(_) = actions.last {
+            actions.removeLast()
+        }
+        
+        // Split the formula into individual components and roll any dice present
         var components = formula.split(separator: " ")
         for (index, component) in components.enumerated() {
             if let die = Die(description: String(component)) {
@@ -107,14 +134,17 @@ class DiceCalculatorViewModel: ObservableObject {
             }
         }
         
+        // Rejoin components
         let simplifiedExpression = components
             .joined(separator: " ")
+            .replacingOccurrences(of: DieButtonAction.add.output, with: "+")
             .replacingOccurrences(of: DieButtonAction.divide.output, with: "/")
             .replacingOccurrences(of: DieButtonAction.multiply.output, with: "*")
+            .replacingOccurrences(of: DieButtonAction.subtract.output, with: "-")
         
+        // Evaluate simplified expression and assign output
         let expression = NSExpression(format: simplifiedExpression)
         let result = expression.expressionValue(with: nil, context: nil)
-        
         output = "\(result!)"
         
     }

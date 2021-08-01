@@ -11,7 +11,7 @@ import SwiftUI
 struct DiceCalcApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(textBackground: Color.gray)
+            ContentView(configuration: DiceCalculatorConfiguration())
         }
     }
 }
