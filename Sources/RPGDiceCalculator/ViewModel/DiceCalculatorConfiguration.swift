@@ -12,7 +12,7 @@ import SwiftUI
 @available(iOS 14.0, *)
 public struct DiceCalculatorConfiguration {
     
-    var buttonConfiguration = ButtonConfiguration(background: Color.gray)
+    var buttonConfiguration = ButtonConfiguration()
     var formulaFont: Font = .title2
     var outputFont: Font = .title
     var textConfiguration = TextConfiguration(background: Color.gray)
@@ -20,7 +20,7 @@ public struct DiceCalculatorConfiguration {
     var rollButtonTitle: String = "Roll"
     
     public init(
-        buttonConfiguration: ButtonConfiguration<Color> = ButtonConfiguration(background: Color.gray),
+        buttonConfiguration: ButtonConfiguration = ButtonConfiguration(),
         formulaFont: Font = .title2,
         outputFont: Font = .title,
         textConfiguration: TextConfiguration<Color> = TextConfiguration(background: Color.gray),
@@ -38,21 +38,18 @@ public struct DiceCalculatorConfiguration {
 
 @available(macOS 10.15, *)
 @available(iOS 13.0, *)
-public struct ButtonConfiguration<Background:View> {
+public struct ButtonConfiguration {
     
-    var background: Background
     var foregroundColor: (normal: Color, pressed: Color) = (.black, .white)
     var backgroundColor: (normal: Color, pressed: Color) = (.gray, .black)
     var cornerRadius: CGFloat = 5
     var shadowRadius: CGFloat = 10
     
     public init(
-        background: Background,
         foregroundColor: (normal: Color, pressed: Color) = (.black, .white),
         backgroundColor: (normal: Color, pressed: Color) = (.gray, .black),
         cornerRadius: CGFloat = 5.0,
         shadowRadius: CGFloat = 10.0) {
-        self.background = background
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
         self.cornerRadius = cornerRadius

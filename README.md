@@ -58,6 +58,10 @@ make install
 
 ## Release History
 
+* 0.0.5
+    * Fixed some layout issues
+* 0.0.4
+    * Fixed public availability of needed functionality
 * 0.0.3
     * Fixed iOS dependency issues
     * *NOTE:* Minimum iOS version is now iOS 14.0
