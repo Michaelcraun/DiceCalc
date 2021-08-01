@@ -5,15 +5,14 @@
 //  Created by Michael Craun on 7/31/21.
 //
 
-import Foundation
+import SwiftUI
 
 class DiceCalculatorViewModel: ObservableObject {
     
-    @Published var output: String = ""
-    
+    @Published var output: String = "0"
     var actions: [DieButtonAction] = [] {
         didSet {
-            output = actions.map({ $0.title }).joined(separator: "")
+            output = actions.map({ $0.output }).joined(separator: "")
         }
     }
     
@@ -21,7 +20,7 @@ class DiceCalculatorViewModel: ObservableObject {
         
         // This is the first button the user has pressed; should be represented as 1dx
         if actions.isEmpty {
-            actions.append(.number("1"))
+            actions.append(.one)
             actions.append(die)
             return
         }
@@ -34,8 +33,8 @@ class DiceCalculatorViewModel: ObservableObject {
                     actions[index - 1] = .number("\(num + 1)")
                 }
             } else {
-                actions.append(.operation(" + "))
-                actions.append(.number("1"))
+                actions.append(.add)
+                actions.append(.one)
                 actions.append(die)
             }
             return
@@ -48,7 +47,7 @@ class DiceCalculatorViewModel: ObservableObject {
     private func add(number: DieButtonAction) {
         
         if case .die(_) = actions.last {
-            actions.append(.operation(" + "))
+            actions.append(.add)
             actions.append(number)
             return
         }
@@ -63,6 +62,11 @@ class DiceCalculatorViewModel: ObservableObject {
             return
         }
         
+        if case .operation(_) = actions.last {
+            actions[actions.count - 1] = operation
+            return
+        }
+        
         actions.append(operation)
         
     }
@@ -71,6 +75,10 @@ class DiceCalculatorViewModel: ObservableObject {
         
         if actions != [] {
             actions.removeLast()
+            
+            if actions == [] {
+                output = "0"
+            }
         }
         
     }
@@ -126,10 +134,20 @@ enum DieButtonAction: Equatable {
     static var nine: DieButtonAction { return .number("9") }
     
     // Operation buttons
-    static var add: DieButtonAction { return .operation(" 􀅼 ")}
-    static var divide: DieButtonAction { return .operation(" 􀅿 ")}
-    static var multiply: DieButtonAction { return .operation(" 􀅾 ")}
-    static var subtract: DieButtonAction { return .operation(" 􀅽 ")}
+    static var add: DieButtonAction { return .operation("􀅼")}
+    static var divide: DieButtonAction { return .operation("􀅿")}
+    static var multiply: DieButtonAction { return .operation("􀅾")}
+    static var subtract: DieButtonAction { return .operation("􀅽")}
+    
+    var ascii: String? {
+        switch self {
+        case .add: return "\u{002B}"
+        case .divide: return "\u{00F7}"
+        case .multiply: return "\u{00D7}"
+        case .subtract: return "\u{2212}"
+        default: return nil
+        }
+    }
     
     var symbol: String? {
         switch self {
@@ -141,14 +159,28 @@ enum DieButtonAction: Equatable {
         default:        return nil
         }
     }
+    
+    var output: String {
+        switch self {
+        case .add:                  return " \(ascii!) "
+        case .delete:               return ""
+        case .die(let die):         return die
+        case .divide:               return " \(ascii!) "
+        case .multiply:             return " \(ascii!) "
+        case .number(let num):      return num
+        case .roll:                 return "Roll"
+        case .subtract:             return " \(ascii!) "
+        default: return ""
+        }
+    }
 
     var title: String {
         switch self {
-        case .delete:                   return ""
-        case .die(let die):             return die
-        case .number(let num):          return num
-        case .operation(let operation): return operation
-        case .roll:                     return "Roll"
+        case .delete:           return ""
+        case .die(let die):     return die
+        case .number(let num):  return num
+        case .operation:        return ""
+        case .roll:             return "Roll"
         }
     }
 }

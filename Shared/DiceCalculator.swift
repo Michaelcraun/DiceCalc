@@ -14,9 +14,10 @@ struct ContentView<TextBackground: View>: View {
     
     var body: some View {
         
-        LazyVGrid(columns: [GridItem(.flexible())], spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/) {
+        LazyVGrid(columns: [GridItem(.flexible())]) {
             
             Text(viewModel.output)
+                .font(.title)
                 .foregroundColor(.black)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .trailing)
