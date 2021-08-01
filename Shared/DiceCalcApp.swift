@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct DiceCalcApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(configuration: DiceCalculatorConfiguration())
+            DiceCalculatorView(configuration: DiceCalculatorConfiguration())
         }
     }
 }

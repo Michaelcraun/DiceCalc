@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct DiceCalculatorView: View {
     
     @StateObject var viewModel = DiceCalculatorViewModel()
     let configuration: DiceCalculatorConfiguration
@@ -28,7 +28,7 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 
             }
-            .foregroundColor(.black)
+            .foregroundColor(configuration.textConfiguration.foregroundColor)
             .padding()
             .background(configuration.textConfiguration.background)
             .cornerRadius(configuration.textConfiguration.cornerRadius)
@@ -44,12 +44,12 @@ struct ContentView: View {
             
             DiceCalculatorRow(viewModel: viewModel, actions: [.one, .two, .three, .add])
             
-            DiceCalculatorRow(viewModel: viewModel, actions: [.zero, .roll])
+            DiceCalculatorRow(viewModel: viewModel, actions: [.zero, .roll(configuration.rollButtonSymbol, configuration.rollButtonTitle)])
             
         }
         .padding()
         .frame(idealWidth: 300, maxWidth: 400, idealHeight: 400, maxHeight: 500)
-        .buttonStyle(configuration.buttonConfiguration.style)
+        .buttonStyle(DiceCalculatorButtonStyle(configuration: configuration.buttonConfiguration))
     
     }
     
@@ -57,6 +57,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(viewModel: DiceCalculatorViewModel(), configuration: DiceCalculatorConfiguration())
+        DiceCalculatorView(viewModel: DiceCalculatorViewModel(), configuration: DiceCalculatorConfiguration())
     }
 }

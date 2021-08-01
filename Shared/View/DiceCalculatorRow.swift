@@ -49,6 +49,6 @@ struct DiceCalculatorRow: View {
 struct DiceCalculatorRow_Previews: PreviewProvider {
     static var previews: some View {
         DiceCalculatorRow(viewModel: DiceCalculatorViewModel(), actions: [.d4, .d6, .d8, .delete])
-            .buttonStyle(DiceCalculatorButtonStyle())
+            .buttonStyle(DiceCalculatorButtonStyle(configuration: ButtonConfiguration(background: Color.gray)))
     }
 }

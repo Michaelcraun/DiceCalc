@@ -12,7 +12,7 @@ enum DieButtonAction: Equatable {
     case die(String)
     case number(String)
     case operation(String)
-    case roll
+    case roll(String?, String)
     
     // DIe buttons
     static var d4: DieButtonAction { return .die("d4") }
@@ -52,12 +52,13 @@ enum DieButtonAction: Equatable {
     
     var symbol: String? {
         switch self {
-        case .add:      return "plus"
-        case .delete:   return "xmark.rectangle.fill"
-        case .divide:   return "divide"
-        case .multiply: return "multiply"
-        case .subtract: return "minus"
-        default:        return nil
+        case .add:                  return "plus"
+        case .delete:               return "xmark.rectangle.fill"
+        case .divide:               return "divide"
+        case .multiply:             return "multiply"
+        case .roll(let symbol, _):  return symbol
+        case .subtract:             return "minus"
+        default:                    return nil
         }
     }
     
@@ -77,11 +78,11 @@ enum DieButtonAction: Equatable {
 
     var title: String {
         switch self {
-        case .delete:           return ""
-        case .die(let die):     return die
-        case .number(let num):  return num
-        case .operation:        return ""
-        case .roll:             return "Roll"
+        case .delete:               return ""
+        case .die(let die):         return die
+        case .number(let num):      return num
+        case .operation:            return ""
+        case .roll(_, let title):   return title
         }
     }
 }

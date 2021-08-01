@@ -9,16 +9,10 @@ import SwiftUI
 
 struct DiceCalculatorButtonStyle: ButtonStyle {
     
-    let backgroundColor: Color
-    let pressedBackgroundColor: Color
-    let foregroundColor: Color
-    let pressedForegroundColor: Color
+    let buttonConfiguration: ButtonConfiguration<Color>
     
-    init(background: Color = .gray, pressedBackground: Color = .black, foreground: Color = .black, pressedForeground: Color = .white) {
-        self.backgroundColor = background
-        self.pressedBackgroundColor = pressedBackground
-        self.foregroundColor = foreground
-        self.pressedForegroundColor = pressedForeground
+    init(configuration: ButtonConfiguration<Color>) {
+        self.buttonConfiguration = configuration
     }
     
     func makeBody(configuration: Configuration) -> some View {
@@ -26,17 +20,18 @@ struct DiceCalculatorButtonStyle: ButtonStyle {
             .padding()
             .background(
                 configuration.isPressed ?
-                pressedBackgroundColor :
-                backgroundColor)
-            .cornerRadius(5)
+                    buttonConfiguration.backgroundColor.pressed :
+                    buttonConfiguration.backgroundColor.normal)
+            .background(buttonConfiguration.background)
+            .cornerRadius(buttonConfiguration.cornerRadius)
             .foregroundColor(
                 configuration.isPressed ?
-                pressedForegroundColor :
-                foregroundColor)
-            .shadow(radius: 10)
+                    buttonConfiguration.foregroundColor.pressed :
+                    buttonConfiguration.foregroundColor.normal)
+            .shadow(radius: buttonConfiguration.shadowRadius)
             .scaleEffect(
                 configuration.isPressed ?
-                0.99 :
+                0.9 :
                 1.0)
             .animation(.easeIn)
             
@@ -51,7 +46,7 @@ struct DiceCalculatorButtonStyle_Previews: PreviewProvider {
         Button(action: {  }, label: {
             Text("Test")
         })
-        .buttonStyle(DiceCalculatorButtonStyle())
+        .buttonStyle(DiceCalculatorButtonStyle(configuration: ButtonConfiguration(background: Color.gray)))
         
     }
     

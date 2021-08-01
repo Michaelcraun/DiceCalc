@@ -7,39 +7,32 @@
 
 import SwiftUI
 
-class DiceCalculatorConfiguration {
+struct DiceCalculatorConfiguration {
     
-    var buttonConfiguration = ButtonConfiguration(style: DiceCalculatorButtonStyle())
+    var buttonConfiguration = ButtonConfiguration(background: Color.gray)
     var formulaFont: Font = .title2
     var outputFont: Font = .title
     var textConfiguration = TextConfiguration(background: Color.gray)
+    var rollButtonSymbol: String?
+    var rollButtonTitle: String = "Roll"
     
 }
 
-extension DiceCalculatorConfiguration {
+struct ButtonConfiguration<Background:View> {
     
-    class ButtonConfiguration<Style:ButtonStyle> {
-        
-        var style: Style
-        
-        init(style: Style) {
-            self.style = style
-        }
-        
-    }
+    var background: Background
+    var foregroundColor: (normal: Color, pressed: Color) = (.black, .white)
+    var backgroundColor: (normal: Color, pressed: Color) = (.gray, .black)
+    var cornerRadius: CGFloat = 5
+    var shadowRadius: CGFloat = 10
     
-    class TextConfiguration<Background:View> {
-        
-        var background: Background
-        var cornerRadius: CGFloat
-        var shadowRadius: CGFloat
-        
-        init(background: Background, cornerRadius: CGFloat = 5, shadowRadius: CGFloat = 10) {
-            self.background = background
-            self.cornerRadius = cornerRadius
-            self.shadowRadius = shadowRadius
-        }
-        
-    }
+}
+
+struct TextConfiguration<Background:View> {
+    
+    var background: Background
+    var foregroundColor: Color = .black
+    var cornerRadius: CGFloat = 5
+    var shadowRadius: CGFloat = 10
     
 }

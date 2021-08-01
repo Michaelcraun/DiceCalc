@@ -153,7 +153,7 @@ class DiceCalculatorViewModel: ObservableObject {
         
         if action == .delete {
             deleteLast()
-        } else if action == .roll {
+        } else if case .roll(_,_) = action {
             roll()
         } else {
             switch action {
