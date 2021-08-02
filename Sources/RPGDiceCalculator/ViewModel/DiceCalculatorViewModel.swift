@@ -11,6 +11,12 @@ import Foundation
 @available(iOS 14.0, *)
 public class DiceCalculatorViewModel: ObservableObject {
     
+    public typealias RollCompletion = (Int) -> Void
+    public typealias FormulaChange = (String) -> Void
+    
+    private var onRoll: RollCompletion?
+    private var onChange: FormulaChange?
+    
     @Published var formula: String = "0"
     @Published var output: String = "0"
     var actions: [DieButtonAction] = [] {
@@ -18,6 +24,8 @@ public class DiceCalculatorViewModel: ObservableObject {
             formula = actions.map({ $0.output }).joined(separator: "")
         }
     }
+    
+    public init() {  }
     
     private func add(die: DieButtonAction) {
         
@@ -121,7 +129,36 @@ public class DiceCalculatorViewModel: ObservableObject {
         
     }
     
-    private func roll() {
+    func buttonPressed(action: DieButtonAction) {
+        
+        if action == .delete {
+            deleteLast()
+        } else if case .roll(_,_) = action {
+            roll()
+        } else {
+            switch action {
+            case .die:          add(die: action)
+            case .number:       add(number: action)
+            case .operation:    add(operation: action)
+            default: return
+            }
+        }
+        
+        onChange?(formula)
+        
+    }
+    
+    public func onChange(_ onChange: FormulaChange? = nil) -> DiceCalculatorViewModel {
+        self.onChange = onChange
+        return self
+    }
+    
+    public func onRoll(_ onRoll: RollCompletion? = nil) -> DiceCalculatorViewModel {
+        self.onRoll = onRoll
+        return self
+    }
+    
+    public func roll() {
         
         // If the last button pressed was an operation, it's useless, so remove it
         if case .operation(_) = actions.last {
@@ -148,23 +185,7 @@ public class DiceCalculatorViewModel: ObservableObject {
         let expression = NSExpression(format: simplifiedExpression)
         let result = expression.expressionValue(with: nil, context: nil)
         output = "\(result!)"
-        
-    }
-    
-    func buttonPressed(action: DieButtonAction) {
-        
-        if action == .delete {
-            deleteLast()
-        } else if case .roll(_,_) = action {
-            roll()
-        } else {
-            switch action {
-            case .die:          add(die: action)
-            case .number:       add(number: action)
-            case .operation:    add(operation: action)
-            default: break
-            }
-        }
+        onRoll?(result as! Int)
         
     }
     

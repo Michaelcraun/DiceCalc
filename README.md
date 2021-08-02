@@ -6,7 +6,7 @@
 [![License][license-image]][license-url]
 [![codebeat-badge][codebeat-image]][codebeat-url]
 
-One to two paragraph statement about your product and what it does.
+With RPGDiceCalculator you can create both simple and complex dice-based formulae within your application and roll those
 
 ![](header.png)
 
@@ -24,9 +24,12 @@ let package = Package(
 )
 ```
 
+Alternatively, you can add this package to your Xcode project directly by clicking `File > Swift Packages > Add Package Dependency...` and pasting the link to this repository (`https://github.com/Michaelcraun/DiceCalc.git`) in the dialog box.
+
 ## Usage example
 
 You can use the default layout simply by using the default initializer like so:
+
 ```swift
 import RPGDiceCalculator
 import SwiftUI
@@ -41,6 +44,7 @@ struct SomeView: View {
 ![](default_configuration.png)
 
 Or you can customize the calculator's appearance using an instance of the DiceCalculatorConfiguration, like so:
+
 ```swift
 import RPGDiceCalculator
 import SwiftUI
@@ -64,16 +68,58 @@ struct DicePickerView: View {
 
 ![](custom_configuration.png)
 
-## Development setup
+### Using the data
 
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
+RPGDiceCalculator has two completion handlers for your use: `onChange` and `onRoll`. Each of these sends different data back to the receiver and can be implemented with the `.onChange(_:)` and `.onRoll(_:)` functions of the data model, like so:
+```swift
+import RPGDiceCalculator
+import SwiftUI
 
-```sh
-make install
+struct DicePickerView: View {
+    var configuration: DiceCalculatorConfiguration {
+        DiceCalculatorConfiguration(
+            buttonConfiguration: ButtonConfiguration(
+                foregroundColor: (normal: .primary, pressed: Color.secondary),
+                backgroundColor: (normal: .secondary, pressed: .secondary)),
+            formulaFont: .body,
+            outputFont: .largeTitle,
+            rollButtonTitle: "Finished")
+    }
+    
+    var viewModel: DiceCalculatorViewModel {
+        DiceCalculatorViewModel()
+            .onChange { formula in 
+                print(formula)
+            }
+            .onRoll { roll in 
+                print(roll)
+            }
+    }
+    
+    var body: some View {
+        DiceCalculatorView(viewModel, configuration: configuration)
+    }
+}
 ```
+
+### Limitations
+
+**Number of Dice.** While testing, I found that a number of dice with 6 or more digits took almost a full second to calculate the rolls, so numbers with more than 5 digits have been disabled within this project. When the user attempts to enter a 6th digit while using the calculator, nothing happens.   
+
+## Further Development/Assitance
+
+If you would like to contribute to this project, please feel free to do so. I believe strongly in open-source collaboration! :)
+Before opening your PR, please create an issue within GitHub with the `enhancement` label applied.
+When creating your PR, please include a short note about what you changed and why it's made this package better.
+
+For a list of planned changes and updates, please see the current list of [open issues](https://github.com/Michaelcraun/DiceCalc/issues) on GitHub.
 
 ## Release History
 
+* 0.1.1
+    * Updated README
+    * Added completion handler for rolled value
+    * Added update handler for formula
 * 0.1.0
     * The first official release
 * 0.0.6

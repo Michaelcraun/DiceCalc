@@ -55,7 +55,8 @@ public struct DiceCalculatorView: View {
     
     }
     
-    public init(configuration: DiceCalculatorConfiguration = DiceCalculatorConfiguration()) {
+    public init(_ viewModel: DiceCalculatorViewModel? = nil, configuration: DiceCalculatorConfiguration = DiceCalculatorConfiguration()) {
+        self._viewModel = viewModel == nil ? .init(wrappedValue: DiceCalculatorViewModel()) : .init(wrappedValue: viewModel!)
         self.configuration = configuration
     }
     
