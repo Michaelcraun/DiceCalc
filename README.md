@@ -65,6 +65,7 @@ struct DicePickerView: View {
     }
 }
 ```
+There are many more customization options built in to the calculator, so play around with them until you're happy with it's appearance! :)
 
 ![](custom_configuration.png)
 
@@ -116,6 +117,8 @@ For a list of planned changes and updates, please see the current list of [open 
 
 ## Release History
 
+* 0.1.2
+    * Added support for button fonts
 * 0.1.1
     * Updated README
     * Added completion handler for rolled value

@@ -40,16 +40,19 @@ public struct DiceCalculatorConfiguration {
 @available(iOS 13.0, *)
 public struct ButtonConfiguration {
     
+    var font: Font
     var foregroundColor: (normal: Color, pressed: Color) = (.black, .white)
     var backgroundColor: (normal: Color, pressed: Color) = (.gray, .black)
     var cornerRadius: CGFloat = 5
     var shadowRadius: CGFloat = 10
     
     public init(
+        font: Font = .system(.body),
         foregroundColor: (normal: Color, pressed: Color) = (.black, .white),
         backgroundColor: (normal: Color, pressed: Color) = (.gray, .black),
         cornerRadius: CGFloat = 5.0,
         shadowRadius: CGFloat = 10.0) {
+        self.font = font
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
         self.cornerRadius = cornerRadius

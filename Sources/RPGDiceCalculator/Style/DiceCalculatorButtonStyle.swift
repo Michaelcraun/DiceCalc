@@ -19,6 +19,7 @@ struct DiceCalculatorButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
+            .font(buttonConfiguration.font)
             .padding()
             .background(
                 configuration.isPressed ?
