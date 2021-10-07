@@ -8,7 +8,7 @@
 
 With RPGDiceCalculator you can create both simple and complex dice-based formulae within your application and roll those
 
-![](header.png)
+<!-- <img src="meta/header.png" alt="drawing" width="300"/> -->
 
 ## Installation
 
@@ -41,7 +41,7 @@ struct SomeView: View {
 }
 ```
 
-![](default_configuration.png)
+<img src="meta/default_configuration.png" alt="drawing" width="300"/>
 
 Or you can customize the calculator's appearance using an instance of the DiceCalculatorConfiguration, like so:
 
@@ -67,7 +67,7 @@ struct DicePickerView: View {
 ```
 There are many more customization options built in to the calculator, so play around with them until you're happy with it's appearance! :)
 
-![](custom_configuration.png)
+<img src="meta/custom_configuration.png" alt="drawing" width="300"/>
 
 ### Using the data
 
